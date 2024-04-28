@@ -18,6 +18,24 @@ List<Map<String, dynamic>> hospitalsList = [
         'consultedPatients': 800,
         'experience': '8 years',
         'rating': 4.7,
+      }, {
+        'name': 'Dr. Jane Smith',
+        'specialty': 'Orthopedic Surgeon',
+        'consultedPatients': 800,
+        'experience': '8 years',
+        'rating': 4.7,
+      }, {
+        'name': 'Dr. Jane Smith',
+        'specialty': 'Orthopedic Surgeon',
+        'consultedPatients': 800,
+        'experience': '8 years',
+        'rating': 4.7,
+      }, {
+        'name': 'Dr. Jane Smith',
+        'specialty': 'Orthopedic Surgeon',
+        'consultedPatients': 800,
+        'experience': '8 years',
+        'rating': 4.7,
       },
       // Add more doctors as needed
     ],
@@ -162,14 +180,14 @@ List<Map<String, dynamic>> hospitalsList = [
   },
 ];
 
-class Hospital {
+class HospitalModel {
   final String name;
   final String place;
   final String hospitalImg;
   final double rating;
   final List<Map<String, dynamic>> doctors;
 
-  Hospital({
+  HospitalModel({
     required this.name,
     required this.place,
     required this.hospitalImg,

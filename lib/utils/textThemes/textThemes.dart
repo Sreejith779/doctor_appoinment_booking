@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TextThemes{
+ class TextThemes{
   static TextStyle headingTitle = const TextStyle(
     fontSize: 22,
     fontWeight: FontWeight.w400,

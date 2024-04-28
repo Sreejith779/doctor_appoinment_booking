@@ -1,4 +1,5 @@
 
+import 'package:doctor_appoinment_booking/features/DetailPage/ui/detailPage.dart';
 import 'package:doctor_appoinment_booking/features/homePage/ui/hospital.dart';
 import 'package:doctor_appoinment_booking/models/banner.dart';
 import 'package:flutter/material.dart';
@@ -28,8 +29,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return BlocConsumer<HomeBloc, HomeState>(
       bloc: homeBloc,
+      listenWhen: (previous,current)=>(current is HomeActionState),
+      buildWhen: (previous,current)=>(current is !HomeActionState),
       listener: (context, state) {
-        // TODO: implement listener
+
       },
       builder: (context, state) {
         switch (state.runtimeType) {
@@ -42,7 +45,7 @@ class _HomePageState extends State<HomePage> {
                     SliverAppBar(
                       pinned: false,
                       floating: false,
-                      backgroundColor: Colors.blue.withOpacity(0.5),
+                      backgroundColor:Color(0xFF8AB8FC),
                       title: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -59,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                       actions: [
                         IconButton(
                             onPressed: () {},
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.notifications,
                               color: Colors.white,
                             ))
@@ -67,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     SliverAppBar(
                       pinned: true,
-                      backgroundColor: Colors.blue.withOpacity(0.5),
+                      backgroundColor:Color(0xFF8AB8FC),
                       title: searchBar(),
                       expandedHeight: 80,
 
@@ -88,6 +91,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           Container(
+                            margin: EdgeInsets.all(5),
                               child: Hospital(hospitals:loadedState.hospitals)
                           )
                         ],
