@@ -11,6 +11,13 @@ List<Map<String, dynamic>> hospitalsList = [
         'consultedPatients': 1000,
         'experience': '10 years',
         'rating': 4.8,
+        'bookingTimings': [
+          {'time': '9:30 AM', 'status': 'Available'},
+          {'time': '11:30 AM', 'status': 'Booked'},
+          {'time': '12:30 PM', 'status': 'Available'},
+          {'time': '3:30 PM', 'status': 'Available'},
+          {'time': '5:30 PM', 'status': 'Booked'},
+        ],
       },
       {
         'name': 'Dr. Jane Smith',
@@ -18,26 +25,57 @@ List<Map<String, dynamic>> hospitalsList = [
         'consultedPatients': 800,
         'experience': '8 years',
         'rating': 4.7,
-      }, {
-        'name': 'Dr. Jane Smith',
-        'specialty': 'Orthopedic Surgeon',
-        'consultedPatients': 800,
-        'experience': '8 years',
-        'rating': 4.7,
-      }, {
-        'name': 'Dr. Jane Smith',
-        'specialty': 'Orthopedic Surgeon',
-        'consultedPatients': 800,
-        'experience': '8 years',
-        'rating': 4.7,
-      }, {
-        'name': 'Dr. Jane Smith',
-        'specialty': 'Orthopedic Surgeon',
-        'consultedPatients': 800,
-        'experience': '8 years',
-        'rating': 4.7,
+        'bookingTimings': [
+          {'time': '9:30 AM', 'status': 'Available'},
+          {'time': '11:30 AM', 'status': 'Booked'},
+          {'time': '12:30 PM', 'status': 'Available'},
+          {'time': '3:30 PM', 'status': 'Available'},
+          {'time': '5:30 PM', 'status': 'Booked'},
+        ],
       },
-      // Add more doctors as needed
+      {
+        'name': 'Dr. Jane Smith',
+        'specialty': 'Orthopedic Surgeon',
+        'consultedPatients': 800,
+        'experience': '8 years',
+        'rating': 4.7,
+        'bookingTimings': [
+          {'time': '9:30 AM', 'status': 'Available'},
+          {'time': '11:30 AM', 'status': 'Booked'},
+          {'time': '12:30 PM', 'status': 'Available'},
+          {'time': '3:30 PM', 'status': 'Available'},
+          {'time': '5:30 PM', 'status': 'Booked'},
+        ],
+      },
+      {
+        'name': 'Dr. Jane Smith',
+        'specialty': 'Orthopedic Surgeon',
+        'consultedPatients': 800,
+        'experience': '8 years',
+        'rating': 4.7,
+        'bookingTimings': [
+          {'time': '9:30 AM', 'status': 'Available'},
+          {'time': '11:30 AM', 'status': 'Booked'},
+          {'time': '12:30 PM', 'status': 'Available'},
+          {'time': '3:30 PM', 'status': 'Available'},
+          {'time': '5:30 PM', 'status': 'Booked'},
+        ],
+      },
+      {
+        'name': 'Dr. Jane Smith',
+        'specialty': 'Orthopedic Surgeon',
+        'consultedPatients': 800,
+        'experience': '8 years',
+        'rating': 4.7,
+        'bookingTimings': [
+          {'time': '9:30 AM', 'status': 'Available'},
+          {'time': '11:30 AM', 'status': 'Booked'},
+          {'time': '12:30 PM', 'status': 'Available'},
+          {'time': '3:30 PM', 'status': 'Available'},
+          {'time': '5:30 PM', 'status': 'Booked'},
+        ],
+      },
+
     ],
   },
   {
@@ -52,6 +90,13 @@ List<Map<String, dynamic>> hospitalsList = [
         'consultedPatients': 1200,
         'experience': '12 years',
         'rating': 4.9,
+        'bookingTimings': [
+          {'time': '9:30 AM', 'status': 'Available'},
+          {'time': '11:30 AM', 'status': 'Booked'},
+          {'time': '12:30 PM', 'status': 'Available'},
+          {'time': '3:30 PM', 'status': 'Available'},
+          {'time': '5:30 PM', 'status': 'Booked'},
+        ],
       },
       {
         'name': 'Dr. Emily Brown',
@@ -59,6 +104,13 @@ List<Map<String, dynamic>> hospitalsList = [
         'consultedPatients': 600,
         'experience': '6 years',
         'rating': 4.6,
+        'bookingTimings': [
+          {'time': '9:30 AM', 'status': 'Available'},
+          {'time': '11:30 AM', 'status': 'Booked'},
+          {'time': '12:30 PM', 'status': 'Available'},
+          {'time': '3:30 PM', 'status': 'Available'},
+          {'time': '5:30 PM', 'status': 'Booked'},
+        ],
       },
       // Add more doctors as needed
     ],
@@ -75,6 +127,13 @@ List<Map<String, dynamic>> hospitalsList = [
         'consultedPatients': 1500,
         'experience': '15 years',
         'rating': 4.7,
+        'bookingTimings': [
+          {'time': '9:30 AM', 'status': 'Available'},
+          {'time': '11:30 AM', 'status': 'Booked'},
+          {'time': '12:30 PM', 'status': 'Available'},
+          {'time': '3:30 PM', 'status': 'Available'},
+          {'time': '5:30 PM', 'status': 'Booked'},
+        ],
       },
       {
         'name': 'Dr. Sarah Garcia',
@@ -82,6 +141,13 @@ List<Map<String, dynamic>> hospitalsList = [
         'consultedPatients': 700,
         'experience': '7 years',
         'rating': 4.5,
+        'bookingTimings': [
+          {'time': '9:30 AM', 'status': 'Available'},
+          {'time': '11:30 AM', 'status': 'Booked'},
+          {'time': '12:30 PM', 'status': 'Available'},
+          {'time': '3:30 PM', 'status': 'Available'},
+          {'time': '5:30 PM', 'status': 'Booked'},
+        ],
       },
       // Add more doctors as needed
     ],
@@ -98,6 +164,13 @@ List<Map<String, dynamic>> hospitalsList = [
         'consultedPatients': 900,
         'experience': '9 years',
         'rating': 4.4,
+        'bookingTimings': [
+          {'time': '9:30 AM', 'status': 'Available'},
+          {'time': '11:30 AM', 'status': 'Booked'},
+          {'time': '12:30 PM', 'status': 'Available'},
+          {'time': '3:30 PM', 'status': 'Available'},
+          {'time': '5:30 PM', 'status': 'Booked'},
+        ],
       },
       {
         'name': 'Dr. Amanda White',
@@ -105,6 +178,13 @@ List<Map<String, dynamic>> hospitalsList = [
         'consultedPatients': 500,
         'experience': '5 years',
         'rating': 4.3,
+        'bookingTimings': [
+          {'time': '9:30 AM', 'status': 'Available'},
+          {'time': '11:30 AM', 'status': 'Booked'},
+          {'time': '12:30 PM', 'status': 'Available'},
+          {'time': '3:30 PM', 'status': 'Available'},
+          {'time': '5:30 PM', 'status': 'Booked'},
+        ],
       },
       // Add more doctors as needed
     ],
@@ -121,6 +201,13 @@ List<Map<String, dynamic>> hospitalsList = [
         'consultedPatients': 1100,
         'experience': '11 years',
         'rating': 4.6,
+        'bookingTimings': [
+          {'time': '9:30 AM', 'status': 'Available'},
+          {'time': '11:30 AM', 'status': 'Booked'},
+          {'time': '12:30 PM', 'status': 'Available'},
+          {'time': '3:30 PM', 'status': 'Available'},
+          {'time': '5:30 PM', 'status': 'Booked'},
+        ],
       },
       {
         'name': 'Dr. Melissa Taylor',
@@ -128,6 +215,13 @@ List<Map<String, dynamic>> hospitalsList = [
         'consultedPatients': 750,
         'experience': '7 years',
         'rating': 4.8,
+        'bookingTimings': [
+          {'time': '9:30 AM', 'status': 'Available'},
+          {'time': '11:30 AM', 'status': 'Booked'},
+          {'time': '12:30 PM', 'status': 'Available'},
+          {'time': '3:30 PM', 'status': 'Available'},
+          {'time': '5:30 PM', 'status': 'Booked'},
+        ],
       },
       // Add more doctors as needed
     ],
@@ -144,6 +238,13 @@ List<Map<String, dynamic>> hospitalsList = [
         'consultedPatients': 1300,
         'experience': '13 years',
         'rating': 4.5,
+        'bookingTimings': [
+          {'time': '9:30 AM', 'status': 'Available'},
+          {'time': '11:30 AM', 'status': 'Booked'},
+          {'time': '12:30 PM', 'status': 'Available'},
+          {'time': '3:30 PM', 'status': 'Available'},
+          {'time': '5:30 PM', 'status': 'Booked'},
+        ],
       },
       {
         'name': 'Dr. Jessica Wilson',
@@ -151,6 +252,13 @@ List<Map<String, dynamic>> hospitalsList = [
         'consultedPatients': 850,
         'experience': '8 years',
         'rating': 4.2,
+        'bookingTimings': [
+          {'time': '9:30 AM', 'status': 'Available'},
+          {'time': '11:30 AM', 'status': 'Booked'},
+          {'time': '12:30 PM', 'status': 'Available'},
+          {'time': '3:30 PM', 'status': 'Available'},
+          {'time': '5:30 PM', 'status': 'Booked'},
+        ],
       },
       // Add more doctors as needed
     ],
@@ -167,6 +275,13 @@ List<Map<String, dynamic>> hospitalsList = [
         'consultedPatients': 1400,
         'experience': '14 years',
         'rating': 4.9,
+        'bookingTimings': [
+          {'time': '9:30 AM', 'status': 'Available'},
+          {'time': '11:30 AM', 'status': 'Booked'},
+          {'time': '12:30 PM', 'status': 'Available'},
+          {'time': '3:30 PM', 'status': 'Available'},
+          {'time': '5:30 PM', 'status': 'Booked'},
+        ],
       },
       {
         'name': 'Dr. Laura Johnson',
@@ -174,6 +289,13 @@ List<Map<String, dynamic>> hospitalsList = [
         'consultedPatients': 950,
         'experience': '9 years',
         'rating': 4.7,
+        'bookingTimings': [
+          {'time': '9:30 AM', 'status': 'Available'},
+          {'time': '11:30 AM', 'status': 'Booked'},
+          {'time': '12:30 PM', 'status': 'Available'},
+          {'time': '3:30 PM', 'status': 'Available'},
+          {'time': '5:30 PM', 'status': 'Booked'},
+        ],
       },
       // Add more doctors as needed
     ],

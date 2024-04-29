@@ -1,4 +1,5 @@
 
+import 'package:doctor_appoinment_booking/features/doctorDetailPage/doctorDetailPage.dart';
 import 'package:doctor_appoinment_booking/models/hospitalList.dart';
 
 import 'package:flutter/material.dart';
@@ -63,35 +64,41 @@ class _DetailedPageState extends State<DetailedPage> {
                 crossAxisCount: 2, childAspectRatio: 1),
             itemCount: widget.clickedHospital.doctors.length,
             itemBuilder: (context, index) {
-              return   Card(
-                elevation: 0.5,
-                color: Color(0xFFE7E5FF),
-                child: Column(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(top: 20),
-                      child: CircleAvatar(
-                        radius: 35,
+              return   InkWell(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                  DoctorDetaledPage(clickedDoctor: widget.clickedHospital.doctors[index],)));
+                },
+                child: Card(
+                  elevation: 0.5,
+                  color: Color(0xFFE7E5FF),
+                  child: Column(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(top: 20),
+                        child: CircleAvatar(
+                          radius: 35,
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: Text(widget.clickedHospital.doctors[index]['name'],
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: Text(widget.clickedHospital.doctors[index]['name'],
+                        style: const TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w600,
+
+                        ),),
+                      ),
+                      Text(widget.clickedHospital.doctors[index]['specialty'],
                       style: const TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
 
                       ),),
-                    ),
-                    Text(widget.clickedHospital.doctors[index]['specialty'],
-                    style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
+                    ],
+                  ),
 
-                    ),),
-                  ],
                 ),
-
               );
             }),
           )
