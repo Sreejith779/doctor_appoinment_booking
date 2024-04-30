@@ -3,6 +3,7 @@ import 'package:doctor_appoinment_booking/models/hospitalList.dart';
 import 'package:doctor_appoinment_booking/utils/textThemes/textThemes.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
@@ -17,6 +18,7 @@ class DoctorDetaledPage extends StatefulWidget {
 class _DoctorDetaledPageState extends State<DoctorDetaledPage> {
   @override
   Widget build(BuildContext context) {
+    List<dynamic>timings = widget.clickedDoctor['bookingTimings'].map((e)=>e['time']).toList();
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -31,10 +33,12 @@ class _DoctorDetaledPageState extends State<DoctorDetaledPage> {
                   const CircleAvatar(
                     radius: 35,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(widget.clickedDoctor["name"],
-                        style: TextThemes.subHeadingTitle),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(widget.clickedDoctor["name"],
+                          style: TextThemes.subHeadingTitle),
+                    ),
                   )
                 ],
               ),
@@ -83,16 +87,41 @@ class _DoctorDetaledPageState extends State<DoctorDetaledPage> {
                 Container(
                   height: double.maxFinite,
                   child: GridView.builder(
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,
-                      childAspectRatio: 2),
-                      itemCount: widget.clickedDoctor['bookingTimings'].length,
-                      itemBuilder: (context,index){
-                     return Container(
-                       margin: EdgeInsets.all(5),
-                       color: Colors.grey,
-                       child: Text(widget.clickedDoctor["bookingTimings"]["time"].toString()),
-                     );
-                      }),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      childAspectRatio: 2,
+                    ),
+                    itemCount: timings.length, // Use timings.length instead of widget.clickedDoctor['bookingTimings'].length
+                    itemBuilder: (context, index) {
+                      return Container(
+                        margin: const EdgeInsets.all(5),
+                        color: Colors.grey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(timings[index]), // Display each timing individually
+                          ],
+                        ),
+                      );
+                    },
+                  )
+
+                  // GridView.builder(
+                  //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,
+                  //     childAspectRatio: 2),
+                  //     itemCount:  timings.length,
+                  //     itemBuilder: (context,index){
+                  //    return Container(
+                  //      margin: EdgeInsets.all(5),
+                  //      color: Colors.grey,
+                  //      child:const Column(
+                  //        crossAxisAlignment: CrossAxisAlignment.start,
+                  //        children: [
+                  //          Text(timings[index])
+                  //        ]
+                  //      ),
+                  //    );
+                  //     }),
                 )
 
               ],
