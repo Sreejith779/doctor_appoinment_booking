@@ -1,4 +1,3 @@
-
 import 'package:doctor_appoinment_booking/features/DetailPage/ui/detailPage.dart';
 import 'package:doctor_appoinment_booking/features/homePage/ui/hospital.dart';
 import 'package:doctor_appoinment_booking/models/banner.dart';
@@ -17,6 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var _searchQuary = '';
   @override
   void initState() {
     homeBloc.add(HomeInitialEvent());
@@ -29,15 +29,21 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return BlocConsumer<HomeBloc, HomeState>(
       bloc: homeBloc,
-      listenWhen: (previous,current)=>(current is HomeActionState),
-      buildWhen: (previous,current)=>(current is !HomeActionState),
-      listener: (context, state) {
-
-      },
+      listenWhen: (previous, current) => (current is HomeActionState),
+      buildWhen: (previous, current) => (current is! HomeActionState),
+      listener: (context, state) {},
       builder: (context, state) {
         switch (state.runtimeType) {
           case HomeLoadedState:
             final loadedState = state as HomeLoadedState;
+            final filteredList = _searchQuary.isEmpty
+                ? loadedState.hospitalSort()
+                : loadedState
+                    .hospitalSort()
+                    .where((element) => element.name
+                        .toLowerCase()
+                        .contains(_searchQuary.toLowerCase()))
+                    .toList();
             return Scaffold(
                 backgroundColor: Colors.blue.withOpacity(0.2),
                 body: CustomScrollView(
@@ -45,7 +51,7 @@ class _HomePageState extends State<HomePage> {
                     SliverAppBar(
                       pinned: false,
                       floating: false,
-                      backgroundColor:Color(0xFF8AB8FC),
+                      backgroundColor: Color(0xFF8AB8FC),
                       title: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -70,10 +76,9 @@ class _HomePageState extends State<HomePage> {
                     ),
                     SliverAppBar(
                       pinned: true,
-                      backgroundColor:Color(0xFF8AB8FC),
+                      backgroundColor: Color(0xFF8AB8FC),
                       title: searchBar(),
                       expandedHeight: 80,
-
                     ),
                     SliverList(
                         delegate: SliverChildListDelegate([
@@ -91,9 +96,9 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.all(5),
-                              child: Hospital(hospitals:loadedState.hospitals)
-                          )
+                              margin: EdgeInsets.all(5),
+                              child: Hospital(
+                                  hospitals:filteredList))
                         ],
                       )
                     ]))
@@ -149,11 +154,16 @@ class _HomePageState extends State<HomePage> {
       decoration: BoxDecoration(
           color: Colors.white.withOpacity(0.7),
           borderRadius: BorderRadius.circular(18)),
-      child: const TextField(
-        decoration: InputDecoration(
+      child: TextField(
+        onChanged: (value) {
+          setState(() {
+            _searchQuary = value;
+          });
+        },
+        decoration: const InputDecoration(
             suffixIcon: Icon(
               Icons.search_outlined,
-              color: Colors.black ,
+              color: Colors.black,
             ),
             hintText: "Search Hospitals",
             hintStyle: TextStyle(color: Colors.grey),
@@ -175,10 +185,10 @@ class _HomePageState extends State<HomePage> {
           (index) => Container(
             margin: EdgeInsets.all(10),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-             image: DecorationImage(image: AssetImage("assets/${banners[index]}"),
-             fit: BoxFit.cover)
-            ),
+                borderRadius: BorderRadius.circular(15),
+                image: DecorationImage(
+                    image: AssetImage("assets/${banners[index]}"),
+                    fit: BoxFit.cover)),
           ),
         ),
       ),

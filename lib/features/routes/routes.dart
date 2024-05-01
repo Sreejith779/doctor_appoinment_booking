@@ -1,6 +1,8 @@
 import 'package:doctor_appoinment_booking/features/homePage/ui/homePage.dart';
 import 'package:flutter/material.dart';
 
+import '../searchPage/ui/searchPage.dart';
+
 class Routes extends StatefulWidget {
   const Routes({super.key});
 
@@ -11,11 +13,11 @@ class Routes extends StatefulWidget {
 class _RoutesState extends State<Routes> {
   final List tabs = [
     HomePage(),
-    HomePage(),
+    SearchPage(),
     HomePage(),
     HomePage(),
   ];
- var isSelect = 1;
+ var isSelect = 0;
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
