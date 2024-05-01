@@ -1,13 +1,16 @@
 import 'package:date_picker_timeline/date_picker_timeline.dart';
-
 import 'package:doctor_appoinment_booking/utils/textThemes/textThemes.dart';
+
 
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:intl/intl.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 
+import '../routes/routes.dart';
 import 'bloc/doctor_detailed_bloc.dart';
 
 class DoctorDetaledPage extends StatefulWidget {
@@ -19,16 +22,52 @@ class DoctorDetaledPage extends StatefulWidget {
 }
 
 class _DoctorDetaledPageState extends State<DoctorDetaledPage> {
+
+  Razorpay? _razorpay;
+
+
   DoctorDetailedBloc detailedBloc = DoctorDetailedBloc();
+
+  void _handlePaymentSuccess(PaymentSuccessResponse response){
+    Fluttertoast.showToast(msg: "Payment Success ${response.paymentId}",timeInSecForIosWeb: 5);
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response){
+    Fluttertoast.showToast(msg: "Payment Failed ${response.message}",timeInSecForIosWeb: 5);
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response){
+    Fluttertoast.showToast(msg: "External Wallet is ${response.walletName}",timeInSecForIosWeb: 5);
+  }
+
+  void makePayment()async{
+    var options = {
+      "key": "rzp_test_ztCftNJFHUlPQJ",
+      "amount":5000,
+      "name":"Sandhya",
+      "description":"Appointment Booking",
+    "prefill":{'contact':'9526680771','email':'sreejithhkm@gmail.com'}
+    };
+    try{
+
+      _razorpay?.open(options);
+    }catch(e){
+      debugPrint(e.toString());
+    }
+  }
   @override
   void initState() {
     detailedBloc.add(DetailedInitialEvent(clickedDoctor: widget.clickedDoctor));
+    _razorpay = Razorpay();
+
+    _razorpay?.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay?.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay?.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-
     return BlocConsumer<DoctorDetailedBloc, DoctorDetailedState>(
       bloc: detailedBloc,
       listener: (context, state) {
@@ -104,7 +143,7 @@ class _DoctorDetaledPageState extends State<DoctorDetaledPage> {
                           ),
                         ),
                         SizedBox(
-                            height: double.maxFinite,
+                            height: 180,
                             child: GridView.builder(
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
@@ -116,23 +155,32 @@ class _DoctorDetaledPageState extends State<DoctorDetaledPage> {
                                 return InkWell(
                                   onTap: () {
                                     setState(() {
-
+                                      detailedBloc.add(SelectedSlotEvent(
+                                          slot: loadedState.timings[index]));
                                     });
+                                    print(
+                                        "new ${loadedState.selectedSlotIndex}");
                                   },
                                   child: Container(
                                     margin: const EdgeInsets.all(5),
                                     decoration: BoxDecoration(
                                         border: Border.all(),
                                         borderRadius: BorderRadius.circular(10),
-                                        color:Colors.transparent
-                                            ),
+                                        color: loadedState.selectedSlotIndex ==
+                                                loadedState.timings[index]
+                                            ? Colors.deepPurple
+                                            : Colors.transparent),
                                     child: Padding(
                                       padding: const EdgeInsets.only(top: 5),
                                       child: Center(
                                         child: Text(
                                           loadedState.timings[index],
-                                          style: const TextStyle(
-                                              color:  Colors.deepPurple,
+                                          style: TextStyle(
+                                              color: loadedState
+                                                          .selectedSlotIndex ==
+                                                      loadedState.timings[index]
+                                                  ? Colors.white
+                                                  : Colors.deepPurple,
                                               fontWeight: FontWeight.w600,
                                               fontSize: 17),
                                         ),
@@ -141,9 +189,35 @@ class _DoctorDetaledPageState extends State<DoctorDetaledPage> {
                                   ),
                                 );
                               },
-                            )
+                            )),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 140),
+                            child: InkWell(
+                              onTap: (){
+                                makePayment();
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                                    Routes()));
 
-                            )
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Colors.deepPurple,
+                                ),
+                                height: 50,
+                                width: MediaQuery.of(context).size.width * 0.5,
+                                child: Center(
+                                    child: Text(
+                                  "Book Appointment",
+                                  style: TextThemes.subHeadingTitle
+                                      .copyWith(fontSize: 18),
+                                )),
+                              ),
+                            ),
+                          ),
+                        )
                       ],
                     )
                   ]))

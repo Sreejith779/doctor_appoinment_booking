@@ -155,8 +155,8 @@ class _HomePageState extends State<HomePage> {
               Icons.search_outlined,
               color: Colors.black ,
             ),
-            hintText: "Search",
-            hintStyle: TextStyle(color: Colors.black),
+            hintText: "Search Hospitals",
+            hintStyle: TextStyle(color: Colors.grey),
             border: OutlineInputBorder(
               borderSide: BorderSide.none,
             )),

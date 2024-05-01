@@ -8,3 +8,8 @@ class DetailedInitialEvent extends DoctorDetailedEvent{
 
   DetailedInitialEvent({required this.clickedDoctor});
 }
+class SelectedSlotEvent extends DoctorDetailedEvent{
+  final String slot;
+
+  SelectedSlotEvent({required this.slot});
+}
