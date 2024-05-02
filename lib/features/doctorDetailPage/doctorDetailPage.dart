@@ -1,4 +1,5 @@
 import 'package:date_picker_timeline/date_picker_timeline.dart';
+import 'package:doctor_appoinment_booking/features/paymentPage/ui/paymentPage.dart';
 import 'package:doctor_appoinment_booking/utils/textThemes/textThemes.dart';
 
 
@@ -30,6 +31,8 @@ class _DoctorDetaledPageState extends State<DoctorDetaledPage> {
 
   void _handlePaymentSuccess(PaymentSuccessResponse response){
     Fluttertoast.showToast(msg: "Payment Success ${response.paymentId}",timeInSecForIosWeb: 5);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>
+    PaymentPage()));
   }
 
   void _handlePaymentError(PaymentFailureResponse response){
@@ -43,8 +46,8 @@ class _DoctorDetaledPageState extends State<DoctorDetaledPage> {
   void makePayment()async{
     var options = {
       "key": "rzp_test_ztCftNJFHUlPQJ",
-      "amount":5000,
-      "name":"Sandhya",
+      "amount":50000,
+      "name":"Appointment Booking",
       "description":"Appointment Booking",
     "prefill":{'contact':'9526680771','email':'sreejithhkm@gmail.com'}
     };
@@ -197,8 +200,7 @@ class _DoctorDetaledPageState extends State<DoctorDetaledPage> {
                             child: InkWell(
                               onTap: (){
                                 makePayment();
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>
-                                    Routes()));
+
 
                               },
                               child: Container(
