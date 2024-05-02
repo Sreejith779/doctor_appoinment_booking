@@ -124,10 +124,10 @@ class _PaymentPageState extends State<PaymentPage> {
                     ))),
           ),
       Padding(
-        padding: const EdgeInsets.only(top: 30),
+        padding:   EdgeInsets.only(top: 30),
         child: InkWell(
           onTap: (){
-            Navigator.popUntil(context, (route) => Routes());
+            Navigator.popUntil(context, (route) => route.isFirst);
           },
           child: Container(
             width: 100,

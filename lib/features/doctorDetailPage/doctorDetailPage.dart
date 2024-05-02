@@ -1,6 +1,8 @@
 import 'package:date_picker_timeline/date_picker_timeline.dart';
+import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:doctor_appoinment_booking/features/paymentPage/ui/paymentPage.dart';
 import 'package:doctor_appoinment_booking/utils/textThemes/textThemes.dart';
+import 'package:flutter/cupertino.dart';
 
 
 import 'package:flutter/material.dart';
@@ -23,6 +25,8 @@ class DoctorDetaledPage extends StatefulWidget {
 }
 
 class _DoctorDetaledPageState extends State<DoctorDetaledPage> {
+
+  DatePickerController datePickerController = DatePickerController();
 
   Razorpay? _razorpay;
 
@@ -77,6 +81,9 @@ class _DoctorDetaledPageState extends State<DoctorDetaledPage> {
         // TODO: implement listener
       },
       builder: (context, state) {
+        String date = datePickerController.toString();
+        var selectedSlot = '';
+       var  selectedDate = DateTime.now();
         switch (state.runtimeType) {
           case DoctorDetailedLoadedState:
             final loadedState = state as DoctorDetailedLoadedState;
@@ -123,6 +130,13 @@ class _DoctorDetaledPageState extends State<DoctorDetaledPage> {
                         Container(
                           margin: const EdgeInsets.only(top: 5),
                           child: DatePicker(
+                            onDateChange: (value){
+                             setState(() {
+                               selectedDate = value;
+                               print(selectedDate);
+                             });
+                            },
+                            controller: datePickerController,
                             DateTime.now(),
                             height: 100,
                             width: 80,
@@ -158,11 +172,13 @@ class _DoctorDetaledPageState extends State<DoctorDetaledPage> {
                                 return InkWell(
                                   onTap: () {
                                     setState(() {
+                                      selectedSlot = loadedState.selectedSlotIndex;
                                       detailedBloc.add(SelectedSlotEvent(
                                           slot: loadedState.timings[index]));
+                                      print(" date ${selectedSlot}");
+                                      print(" date ${date}");
                                     });
-                                    print(
-                                        "new ${loadedState.selectedSlotIndex}");
+
                                   },
                                   child: Container(
                                     margin: const EdgeInsets.all(5),
