@@ -14,7 +14,7 @@ class HomeLoadedState extends HomeState {
           place: e['place'],
           rating: e['rating'],
           doctors: e['doctors'],
-          hospitalImg: e['hospitalImg']))
+          hospitalImg: e['hospitalImg'], doctorImg: e['doctorImg']))
       .toList();
 
  List<HospitalModel>hospitalSort(){

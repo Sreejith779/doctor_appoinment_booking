@@ -18,7 +18,7 @@ import 'bloc/doctor_detailed_bloc.dart';
 
 class DoctorDetaledPage extends StatefulWidget {
   const DoctorDetaledPage({super.key, required this.clickedDoctor});
-  final Map clickedDoctor;
+  final   clickedDoctor;
 
   @override
   State<DoctorDetaledPage> createState() => _DoctorDetaledPageState();
@@ -96,10 +96,11 @@ class _DoctorDetaledPageState extends State<DoctorDetaledPage> {
                     backgroundColor: Colors.deepPurple,
                     expandedHeight: 160,
                     flexibleSpace: FlexibleSpaceBar(
-                      title: Row(
+                      title: Row( 
                         children: [
-                          const CircleAvatar(
+                            CircleAvatar(
                             radius: 35,
+                            backgroundImage: NetworkImage(widget.clickedDoctor['doctorImg']),
                           ),
                           Expanded(
                             child: Padding(
@@ -131,10 +132,7 @@ class _DoctorDetaledPageState extends State<DoctorDetaledPage> {
                           margin: const EdgeInsets.only(top: 5),
                           child: DatePicker(
                             onDateChange: (value){
-                             setState(() {
-                               selectedDate = value;
-                               print(selectedDate);
-                             });
+                            selectedDate = value;
                             },
                             controller: datePickerController,
                             DateTime.now(),
@@ -173,10 +171,10 @@ class _DoctorDetaledPageState extends State<DoctorDetaledPage> {
                                   onTap: () {
                                     setState(() {
                                       selectedSlot = loadedState.selectedSlotIndex;
-                                      detailedBloc.add(SelectedSlotEvent(
-                                          slot: loadedState.timings[index]));
-                                      print(" date ${selectedSlot}");
-                                      print(" date ${date}");
+                                      detailedBloc.add(BookingEvent(
+                                          slot: loadedState.timings[index], selectedDate: selectedDate)
+                                      );
+
                                     });
 
                                   },

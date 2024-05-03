@@ -13,7 +13,7 @@ class SearchLoadedState extends SearchState{
       place: e['place'],
       rating: e['rating'],
       doctors: e['doctors'],
-      hospitalImg: e['hospitalImg']))
+      hospitalImg: e['hospitalImg'], doctorImg: e['doctorImg']))
       .toList();
 
   final List<DoctorModel>doctors = doctorsList.map((e) =>

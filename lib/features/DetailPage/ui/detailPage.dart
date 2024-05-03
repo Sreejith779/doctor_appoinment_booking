@@ -74,10 +74,11 @@ class _DetailedPageState extends State<DetailedPage> {
                   color: Color(0xFFE7E5FF),
                   child: Column(
                     children: [
-                      const Padding(
+                        Padding(
                         padding: EdgeInsets.only(top: 20),
                         child: CircleAvatar(
                           radius: 35,
+                          backgroundImage: NetworkImage(widget.clickedHospital.doctors[index]['doctorImg']),
                         ),
                       ),
                       Padding(

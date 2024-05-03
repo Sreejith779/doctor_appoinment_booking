@@ -38,7 +38,9 @@ bottomNavigationBar: NavigationBar(
     NavigationDestination(icon: Icon(Icons.person),
         label: ""),
   ],
-backgroundColor: Colors.black,
+backgroundColor: Colors.blue.withOpacity(0.4),
+  indicatorColor: Colors.deepPurple.withOpacity(0.4),
+  indicatorShape: null,
 ),
       body: tabs[isSelect],
     );
